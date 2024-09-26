@@ -118,14 +118,42 @@ div{
 span{
   color:red;
 }
-.input_w600{
+select {
+  border: 1px solid #ced4da;
+  color: black;
+  height: 40px;
+  margin-top: 0px;
+  margin-left: 0px;
+  margin-right: 10px;
+  border-radius: 0.25rem;
+  border-color: #ced4da;
+  box-sizing: border-box;
+  background-color: #fff;
+  font-size: 16px;
+  padding-right: 10px;
+  padding-left: 10px;  
+}
+.select_w1350{
+  width: 1370px;
+}
+.select_w450{
+  width: 450px;
+}
+label{
+  margin-top: 10px;
+}
+.select_w450:focus,
+.input_w600:focus,
+.select_w1350:focus{
   border-color: #66afe9;
   outline: 0;
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
   box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
 }
 .input_w600-error:-webkit-autofill,
-.input_w600:-webkit-autofill{
+.input_w600:-webkit-autofill,
+.select_w1350:-webkit-autofill,
+.select_w450:-webkit-autofill{
   -webkit-box-shadow: 0 0 0 1000px white inset; 
   transition: background-color 5000s ease-in-out 0s;
   box-shadow: 0 0 0 30px white inset;

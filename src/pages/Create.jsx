@@ -3,8 +3,6 @@ import {useEffect, useState } from 'react'
 
 const useValidation=(value,validations)=>{
   const[isEmpty,setEmpty]=useState(true)
-  const[ismobileNum,setmobileNum]=useState(true)
-  const[isemailCheck,setemailCheck]=useState(true)
   const[inputData,setInputData]=useState(true)
   const[Num,setInputNum]=useState(true)
 
@@ -13,14 +11,6 @@ const useValidation=(value,validations)=>{
           switch(validation){
               case'isEmpty':
                   value?setEmpty(false):setEmpty(true)  
-              break;
-              case'ismobileNum':
-                  var num= /^\d*\+?\d*$/
-                  num.test(String(value).toLowerCase())?setmobileNum(false):setmobileNum(true) 
-              break;
-              case'isemailCheck':
-                  var mail=/^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i
-                  mail.test(String(value).toLowerCase())?setemailCheck(false):setemailCheck(true) 
               break;
               case'inputData':
                   var data=/^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.\d{4}$/
@@ -33,11 +23,9 @@ const useValidation=(value,validations)=>{
               default:
           }
       }
-  },[value,validations,isEmpty,inputData,isemailCheck,ismobileNum])
+  },[value,validations,isEmpty,inputData])
   return{
       isEmpty,
-      ismobileNum,
-      isemailCheck,
       inputData,
       Num
   }
@@ -73,21 +61,86 @@ function Create() {
   const surname=useInput('',{isEmpty:true})
   const name=useInput('',{isEmpty:true})
   const othername=useInput('',{isEmpty:true})
+  const kafedra=useInput('')
+  const workplace=useInput('',{isEmpty:true})
+  const orgcategory=useInput('')
+  const worktitlecategory=useInput('')
+  const studyrang=useInput('',{isEmpty:true})
+  const studystep=useInput('',{isEmpty:true})
+  const kvalcategory=useInput('',{isEmpty:true})
 
   return ( 
-<body> 
+<body>
+  <p></p> 
   <div>
     <label className="form-label">Фамилия<span>*</span>
-                <input  className={surname.isDirty&&surname.isEmpty?"input_error input_w600-error":"input input_w600"} onChange={e=>surname.onChange(e)} onBlur={e=>surname.onBlur(e)} value={surname.value}   name="surname" maxLength="40" />
-                    {(surname.isDirty&&surname.isEmpty)&&<div  style={{color:'red'}}></div>}
+      <input  className={surname.isDirty&&surname.isEmpty?"input_error input_w600-error":"input input_w600"} onChange={e=>surname.onChange(e)} onBlur={e=>surname.onBlur(e)} value={surname.value}   name="surname" maxLength="40" />
+      {(surname.isDirty&&surname.isEmpty)&&<div  style={{color:'red'}}></div>}
     </label> 
     <label className="form-label">Имя<span>*</span>
-                <input className={name.isDirty&&name.isEmpty?"input_error input_w600-error":"input input_w600"}  onChange={e=>name.onChange(e)} onBlur={e=>name.onBlur(e)} value={name.value} name="name" maxLength="40"/>
-                    {(name.isDirty&&name.isEmpty)&&<div style={{color:'red'}}></div>}
+      <input className={name.isDirty&&name.isEmpty?"input_error input_w600-error":"input input_w600"}  onChange={e=>name.onChange(e)} onBlur={e=>name.onBlur(e)} value={name.value} name="name" maxLength="40"/>
+      {(name.isDirty&&name.isEmpty)&&<div style={{color:'red'}}></div>}
     </label>
     <label className="form-label">Отчество<span>*</span>
-                <input className={othername.isDirty&&othername.isEmpty?"input_error input_w600-error":"input input_w600"}  onChange={e=>othername.onChange(e)} onBlur={e=>othername.onBlur(e)} value={othername.value} name="othername" maxLength="40"/>
-                    {(othername.isDirty&&othername.isEmpty)&&<div style={{color:'red'}}> </div>}
+      <input className={othername.isDirty&&othername.isEmpty?"input_error input_w600-error":"input input_w600"}  onChange={e=>othername.onChange(e)} onBlur={e=>othername.onBlur(e)} value={othername.value} name="othername" maxLength="40"/>
+       {(othername.isDirty&&othername.isEmpty)&&<div style={{color:'red'}}></div>}
+    </label>
+  </div>
+  <p></p>
+  <div>
+    <label className="form-label">Кафедра<span>*</span>
+      <select className="select select_w1350" onChange={e=>kafedra.onChange(e)} onBlur={e=>kafedra.onBlur(e)} value={kafedra.value}  name="kafedra">
+      </select>
+    </label> 
+  </div>
+  <div>
+  <label className="form-label">Основное место работы<span>*</span>
+      <input  className={workplace.isDirty&&workplace.isEmpty?"input_error input_w600-error":"input input_w600"} onChange={e=>workplace.onChange(e)} onBlur={e=>workplace.onBlur(e)} value={workplace.value}   name="workplace" maxLength="40" />
+      {(workplace.isDirty&&workplace.isEmpty)&&<div  style={{color:'red'}}></div>}
+    </label> 
+    <label className="form-label">Категория организации<span>*</span>
+      <select className="select select_w450" onChange={e=>orgcategory.onChange(e)} onBlur={e=>orgcategory.onBlur(e)} value={orgcategory.value}  name="orgcategory">
+        <option value='ИПКиПКЗ'>Институт повышения квалификации и переподготовки кадров здравоохранения</option>
+        <option value='ОЗ'>Организации здравоохранения, предприятия, объединения</option>
+        <option value='ГО'>Министерства, ведомства, общественные организации</option>
+        <option value='НО'>Научные организации, научно-практические центры</option>
+        <option value='УО'>Учреждения образования</option>
+        <option value='БГМУ'>БГМУ</option>
+        <option value='иные'>Иные работники</option>
+      </select>
+    </label>
+    <label className="form-label">Категория должности<span>*</span>
+      <select className="select select_w450" onChange={e=>worktitlecategory.onChange(e)} onBlur={e=>worktitlecategory.onBlur(e)} value={worktitlecategory.value}  name="orgcategory">
+        <option value='врач'>врачи-специалисты</option>
+        <option value='аспирант'>аспиранты очной (дневной) формы получения образования</option>
+        <option value='гос.служ.'>государственный служащий</option>
+        <option value='науч.раб.'>научный работник</option>
+        <option value='БГМУ_ППС'>профессорско-преподавательский состав БГМУ</option>
+        <option value='ИПКиПКЗ_ППС'>профессорско-преподавательский состав ИПКиПКЗ</option>
+        <option value='иные'>иные категории работников</option>
+      </select>
+    </label>
+  </div>
+  <div>
+    <label className="form-label">Учёное звание<span>*</span>
+      <input  className={studyrang.isDirty&&studyrang.isEmpty?"input_error input_w600-error":"input input_w600"} onChange={e=>studyrang.onChange(e)} onBlur={e=>studyrang.onBlur(e)} value={studyrang.value}   name="studyrang" maxLength="40" />
+      {(studyrang.isDirty&&studyrang.isEmpty)&&<div  style={{color:'red'}}></div>}
+    </label> 
+    <label className="form-label">Учёная степень<span>*</span>
+      <select className="select select_w450" onChange={e=>studystep.onChange(e)} onBlur={e=>studystep.onBlur(e)} value={studystep.value}  name="studystep">
+        <option value='исслед.'>исследователь</option>
+        <option value='магистр'>магистр</option>
+        <option value='д.н.'>доктор наук</option>
+        <option value='НО'>кандидат наук</option>
+      </select>
+    </label>
+    <label className="form-label">Квалификационная категория<span>*</span>
+      <select className="select select_w450" onChange={e=>kvalcategory.onChange(e)} onBlur={e=>kvalcategory.onBlur(e)} value={kvalcategory.value}  name="kvalcategory">
+        <option value='б/к'>специалисты, не имеющие квалифкационной категории</option>
+        <option value='1'>специалисты, имеющие 1 квалификационную категорию</option>
+        <option value='2'>специалисты, имеющие 2 квалификационную категорию</option>
+        <option value='в'>специалисты, имеющие высшую квалификационную категорию</option>
+      </select>
     </label>
   </div>
   <div>
