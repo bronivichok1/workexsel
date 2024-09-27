@@ -11,7 +11,7 @@ function Home() {
     <button className="btn btn-1 btn-sep" onClick={() => navigate('Create', { replace: false })}>Создать</button>
   </div>
   <div>
-    <button className="btn btn-1 btn-sep">Найти и редактировать</button>
+    <button className="btn btn-1 btn-sep" onClick={() => navigate('Edit', { replace: false })}>Найти и редактировать</button>
   </div>
 </body>
     )

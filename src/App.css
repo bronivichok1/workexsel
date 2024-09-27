@@ -76,6 +76,12 @@ div{
   .input_w600-error{
     width: 450px;
  }
+  .input_w680{
+    width: 680px;
+  }
+  .input_w680-error{
+    width: 680px;
+  }
 
  input{
   border: 1px solid #ced4da;
@@ -144,6 +150,7 @@ label{
 }
 .select_w450:focus,
 .input_w600:focus,
+.input_w680:focus,
 .select_w1350:focus{
   border-color: #66afe9;
   outline: 0;
@@ -152,6 +159,8 @@ label{
 }
 .input_w600-error:-webkit-autofill,
 .input_w600:-webkit-autofill,
+.input_w680:-webkit-autofill,
+.input_w680-error:-webkit-autofill,
 .select_w1350:-webkit-autofill,
 .select_w450:-webkit-autofill{
   -webkit-box-shadow: 0 0 0 1000px white inset; 

@@ -73,6 +73,8 @@ function Create() {
   const datanotification=useInput('',{isEmpty:true})
   const numberdoc=useInput('',{isEmpty:true})
   const numberdocdop=useInput('')
+  const VO=useInput('',{isEmpty:true})
+  const DOV=useInput('',{isEmpty:true})
 
   return ( 
 <body>
@@ -161,13 +163,30 @@ function Create() {
     </label>
   </div>
   <div>
-  <label className="form-label">Номер и дата договора<span>*</span>
-      <input className={numberdoc.isDirty&&numberdoc.isEmpty?"input_error input_w600-error":"input input_w600"}  onChange={e=>numberdoc.onChange(e)} onBlur={e=>numberdoc.onBlur(e)} value={numberdoc.value} name="numberdoc" maxLength="40"/>
+    <label className="form-label">Номер и дата договора<span>*</span>
+      <input className={numberdoc.isDirty&&numberdoc.isEmpty?"input_error input_w680-error":"input input_w680"}  onChange={e=>numberdoc.onChange(e)} onBlur={e=>numberdoc.onBlur(e)} value={numberdoc.value} name="numberdoc" maxLength="40"/>
       {(numberdoc.isDirty&&numberdoc.isEmpty)&&<div style={{color:'red'}}></div>}
     </label>
     <label className="form-label">Номер и дата дополнительного соглашения(при наличии)
-      <input className="input input_w600"  onChange={e=>numberdocdop.onChange(e)} onBlur={e=>numberdocdop.onBlur(e)} value={numberdocdop.value} name="numberdocdop" maxLength="40"/>
+      <input className="input input_w680"  onChange={e=>numberdocdop.onChange(e)} onBlur={e=>numberdocdop.onBlur(e)} value={numberdocdop.value} name="numberdocdop" maxLength="40"/>
     </label>  
+  </div>
+  <p align="center"> 
+    <b>
+      <label className="form-label"  >Планируемое количество часов по договору<span>*</span>
+      </label>
+    </b>  
+  </p>
+  <p></p>
+  <div>
+    <label className="form-label">ВО<span>*</span>
+      <input className={VO.isDirty&&VO.isEmpty?"input_error input_w680-error":"input input_w680"}  onChange={e=>VO.onChange(e)} onBlur={e=>VO.onBlur(e)} value={VO.value} name="VO" maxLength="40"/>
+      {(VO.isDirty&&VO.isEmpty)&&<div style={{color:'red'}}></div>}
+    </label>
+    <label className="form-label">ДОВ<span>*</span>
+      <input className={DOV.isDirty&&DOV.isEmpty?"input_error input_w680-error":"input input_w680"}  onChange={e=>DOV.onChange(e)} onBlur={e=>DOV.onBlur(e)} value={DOV.value} name="DOV" maxLength="40"/>
+      {(DOV.isDirty&&DOV.isEmpty)&&<div style={{color:'red'}}></div>}
+    </label>
   </div>
   <div>
     <button className="btn btn-1 btn-sep">Отправить</button>
