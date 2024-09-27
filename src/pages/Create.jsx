@@ -68,10 +68,14 @@ function Create() {
   const studyrang=useInput('',{isEmpty:true})
   const studystep=useInput('',{isEmpty:true})
   const kvalcategory=useInput('',{isEmpty:true})
+  const oldstatus=useInput('',{isEmpty:true})
+  const olddata=useInput('',{isEmpty:true})
+  const datanotification=useInput('',{isEmpty:true})
+  const numberdoc=useInput('',{isEmpty:true})
+  const numberdocdop=useInput('')
 
   return ( 
 <body>
-  <p></p> 
   <div>
     <label className="form-label">Фамилия<span>*</span>
       <input  className={surname.isDirty&&surname.isEmpty?"input_error input_w600-error":"input input_w600"} onChange={e=>surname.onChange(e)} onBlur={e=>surname.onBlur(e)} value={surname.value}   name="surname" maxLength="40" />
@@ -86,7 +90,6 @@ function Create() {
        {(othername.isDirty&&othername.isEmpty)&&<div style={{color:'red'}}></div>}
     </label>
   </div>
-  <p></p>
   <div>
     <label className="form-label">Кафедра<span>*</span>
       <select className="select select_w1350" onChange={e=>kafedra.onChange(e)} onBlur={e=>kafedra.onBlur(e)} value={kafedra.value}  name="kafedra">
@@ -136,12 +139,35 @@ function Create() {
     </label>
     <label className="form-label">Квалификационная категория<span>*</span>
       <select className="select select_w450" onChange={e=>kvalcategory.onChange(e)} onBlur={e=>kvalcategory.onBlur(e)} value={kvalcategory.value}  name="kvalcategory">
-        <option value='б/к'>специалисты, не имеющие квалифкационной категории</option>
+        <option value='б/к'>специалисты, не имеющие квалификационной категории</option>
         <option value='1'>специалисты, имеющие 1 квалификационную категорию</option>
         <option value='2'>специалисты, имеющие 2 квалификационную категорию</option>
         <option value='в'>специалисты, имеющие высшую квалификационную категорию</option>
       </select>
     </label>
+  </div>
+  <div>
+    <label className="form-label">Пенсионер<span>*</span>
+      <input  className={oldstatus.isDirty&&oldstatus.isEmpty?"input_error input_w600-error":"input input_w600"} onChange={e=>oldstatus.onChange(e)} onBlur={e=>oldstatus.onBlur(e)} value={oldstatus.value}   name="oldstatus" maxLength="40" />
+      {(oldstatus.isDirty&&oldstatus.isEmpty)&&<div  style={{color:'red'}}></div>}
+    </label> 
+    <label className="form-label">Дата приобретения статуса пенсионера<span>*</span>
+      <input className={olddata.isDirty&&olddata.isEmpty?"input_error input_w600-error":"input input_w600"}  onChange={e=>olddata.onChange(e)} onBlur={e=>olddata.onBlur(e)} value={olddata.value} name="olddata" maxLength="40"/>
+      {(olddata.isDirty&&olddata.isEmpty)&&<div style={{color:'red'}}></div>}
+    </label>
+    <label className="form-label">Дата получения уведомления<span>*</span>
+      <input className={datanotification.isDirty&&datanotification.isEmpty?"input_error input_w600-error":"input input_w600"}  onChange={e=>datanotification.onChange(e)} onBlur={e=>datanotification.onBlur(e)} value={datanotification.value} name="datanotification" maxLength="40"/>
+       {(datanotification.isDirty&&datanotification.isEmpty)&&<div style={{color:'red'}}></div>}
+    </label>
+  </div>
+  <div>
+  <label className="form-label">Номер и дата договора<span>*</span>
+      <input className={numberdoc.isDirty&&numberdoc.isEmpty?"input_error input_w600-error":"input input_w600"}  onChange={e=>numberdoc.onChange(e)} onBlur={e=>numberdoc.onBlur(e)} value={numberdoc.value} name="numberdoc" maxLength="40"/>
+      {(numberdoc.isDirty&&numberdoc.isEmpty)&&<div style={{color:'red'}}></div>}
+    </label>
+    <label className="form-label">Номер и дата дополнительного соглашения(при наличии)
+      <input className="input input_w600"  onChange={e=>numberdocdop.onChange(e)} onBlur={e=>numberdocdop.onBlur(e)} value={numberdocdop.value} name="numberdocdop" maxLength="40"/>
+    </label>  
   </div>
   <div>
     <button className="btn btn-1 btn-sep">Отправить</button>
