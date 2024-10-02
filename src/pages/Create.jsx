@@ -1,5 +1,6 @@
 import "../App.css"
 import {useEffect, useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify';
 
 const useValidation=(value,validations)=>{
   const[isEmpty,setEmpty]=useState(true)
@@ -58,6 +59,11 @@ const useInput=(InitialValue,validations)=>{
 
 function Create() {
 
+  const PATH = process.env.REACT_APP_PATH;
+  const [ButtonClick,setButtonClick]=useState(false)
+
+  
+
   const surname=useInput('',{isEmpty:true})
   const name=useInput('',{isEmpty:true})
   const othername=useInput('',{isEmpty:true})
@@ -76,6 +82,56 @@ function Create() {
   const VO=useInput('',{isEmpty:true})
   const DOV=useInput('',{isEmpty:true})
 
+  const prepareData = {
+      surname: surname.value,
+      name: name.value,
+      othername: othername.value,
+      kafedra: kafedra.value,
+      workplace: workplace.value,
+      orgcategory: orgcategory.value,
+      worktitlecategory: worktitlecategory.value,
+      studyrang: studyrang.value,
+      studystep: studystep.value,
+      kvalcategory: kvalcategory.value,
+      oldstatus: oldstatus.value,
+      olddata: olddata.value,
+      datanotification: datanotification.value,
+      numberdoc: numberdoc.value,
+      numberdocdop: numberdocdop.value,
+      VO: VO.value,
+      DOV: DOV.value
+  };
+
+  const sendDataToServer = async () => {
+    try {
+      const response = await fetch(PATH+'/excel/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(prepareData), // Преобразование объекта в JSON
+      });
+      if (!response.ok) {
+        throw new Error('Ошибка: ' + response.statusText);
+      }
+      const responseData = await response.json();
+      console.log('Данные успешно отправлены:', responseData);
+    } catch (error) {
+      console.error('Ошибка при отправке данных:', error);
+    }
+  };
+
+  useEffect(()=>{
+    if(ButtonClick===true){
+      sendDataToServer()
+      setButtonClick(false)
+    }
+  },[ButtonClick])
+
+function handleClick(e) {
+  setButtonClick(true)
+  e.preventDefault()
+}
   return ( 
 <body>
   <div>
@@ -95,6 +151,7 @@ function Create() {
   <div>
     <label className="form-label">Кафедра<span>*</span>
       <select className="select select_w1350" onChange={e=>kafedra.onChange(e)} onBlur={e=>kafedra.onBlur(e)} value={kafedra.value}  name="kafedra">
+      <option value='тест'>тест</option>
       </select>
     </label> 
   </div>
@@ -189,7 +246,7 @@ function Create() {
     </label>
   </div>
   <div>
-    <button className="btn btn-1 btn-sep">Отправить</button>
+    <button className="btn btn-1 btn-sep" onClick={handleClick}>Отправить</button>
   </div>
 </body>
     )
