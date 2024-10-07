@@ -115,9 +115,9 @@ function Create() {
         throw new Error('Ошибка: ' + response.statusText);
       }
       const responseData = await response.json();
-      console.log('Данные успешно отправлены:', responseData);
+      //console.log('Данные успешно отправлены:', responseData);
     } catch (error) {
-      console.error('Ошибка при отправке данных:', error);
+      //console.error('Ошибка при отправке данных:', error);
     }
   };
 

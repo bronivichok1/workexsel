@@ -5,6 +5,10 @@ body{
   font-family: Verdana,'Roboto', sans-serif;
   font-size: 16.5px;
 }
+.Total{
+  align-items: left;
+
+}
 div{
     display: flex;
     justify-content: center;
