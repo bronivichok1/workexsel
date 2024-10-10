@@ -81,6 +81,8 @@ function Create() {
   const numberdocdop=useInput('')
   const VO=useInput('',{isEmpty:true})
   const DOV=useInput('',{isEmpty:true})
+  const prim=useInput('')
+
 
   const prepareData = {
       surname: surname.value,
@@ -99,7 +101,8 @@ function Create() {
       numberdoc: numberdoc.value,
       numberdocdop: numberdocdop.value,
       VO: VO.value,
-      DOV: DOV.value
+      DOV: DOV.value,
+      prim:prim.value
   };
 
   const sendDataToServer = async () => {
@@ -243,6 +246,11 @@ function handleClick(e) {
     <label className="form-label">ДОВ<span>*</span>
       <input className={DOV.isDirty&&DOV.isEmpty?"input_error input_w680-error":"input input_w680"}  onChange={e=>DOV.onChange(e)} onBlur={e=>DOV.onBlur(e)} value={DOV.value} name="DOV" maxLength="40"/>
       {(DOV.isDirty&&DOV.isEmpty)&&<div style={{color:'red'}}></div>}
+    </label>
+  </div>
+  <div>
+    <label className="form-label">Примечание
+      <input className="input input_w1350"  onChange={e=>prim.onChange(e)} onBlur={e=>prim.onBlur(e)} value={prim.value} name="prim" maxLength="80"/>
     </label>
   </div>
   <div>

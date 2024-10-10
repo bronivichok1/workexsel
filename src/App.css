@@ -146,6 +146,9 @@ select {
 .select_w1350{
   width: 1370px;
 }
+.input_w1350{
+  width: 1370px;
+}
 .select_w450{
   width: 450px;
 }
@@ -171,3 +174,99 @@ label{
   transition: background-color 5000s ease-in-out 0s;
   box-shadow: 0 0 0 30px white inset;
 }
+
+.table-container {
+  width: 100%; /* Растягиваем контейнер на всю ширину */
+  overflow-x: auto; /* Добавляем прокрутку по горизонтали в случае необходимости */
+}
+
+table {
+  width: 100%; /* Таблица займет всю ширину контейнера */
+  border-collapse: collapse; /* Убираем двойные границы */
+}
+
+th, td {
+  border: 1px solid #000000; /* Добавляем границу для ячеек */
+  padding: 8px; /* Отступы внутри ячеек */
+  text-align: left; /* Выравнивание текста в ячейках */
+}
+
+th {
+  background-color: #00000042; /* Цвет фона для заголовков */
+  position: sticky; /* Чтобы заголовки оставались на месте при прокрутке */
+  top: 0; /* Поднимаем заголовки на верх */
+}
+
+.container {
+  max-width: 800px; /* Максимальная ширина контейнера */
+  margin: 0 auto; /* Центрируем контейнер */
+  padding: 20px; /* Внутренние отступы */
+}
+
+.card-container {
+  display: flex; /* Используем флекс для размещения карточек */
+  flex-direction: column; /* Располагаем элементы в колонку */
+  gap: 20px; /* Промежуток между карточками */
+  margin: 20px 0; /* Горизонтальные отступы, только сверху и снизу */
+}
+
+.card {
+  background-color: #f9f9f9; /* Цвет фона карточки */
+  border: 1px solid #ddd; /* Граница карточки */
+  border-radius: 8px; /* Скругленные углы */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень для карточки */
+  padding: 15px; /* Внутренние отступы в карточке */
+  width: 100%; /* Полная ширина карточки */
+}
+
+.card-header {
+  display: flex; /* Используем флекс для расположения заголовков */
+  justify-content: space-between; /* Располагаем заголовки с равными промежутками */
+  padding: 10px; /* Внутренние отступы для заголовков */
+  border-radius: 8px; /* Скругляем углы заголовков */
+  margin-bottom: 10px; /* Отступ снизу от заголовков */
+}
+
+.card-row {
+  display: flex; /* Используем флекс для размещения значений в строке */
+  border-bottom: 1px solid #ddd; /* Добавляем разделительную линию между записями */
+  padding: 10px 0; /* Отступы для каждой строки */
+}
+
+.card-item {
+  flex: 1; /* Равномерное распределение ширины каждого элемента */
+  text-align: center; /* Центрируем содержимое */
+}
+
+.card-item label {
+  display: block; /* Делаем метку блочным элементом */
+  margin-bottom: 5px; /* Отступ между меткой и значением */
+}
+
+.card-content p {
+  margin: 0; /* Убираем отступы между элементами p */
+}
+
+.button-container {
+  display: flex; /* Используем flexbox для выравнивания кнопки */
+  justify-content: flex-start; /* Выравниваем кнопку влево */
+  padding: 10px 0; /* Отступы вокруг кнопки для визуального комфорта */
+  width: 100%; /* Устанавливаем ширину контейнера кнопки в 100% */
+  box-sizing: border-box; /* Учитываем отступы в ширине */
+}
+
+/* Стили для кнопок */
+.button-container button {
+  padding: 5px 15px; /* Отступы для самой кнопки */
+  background-color: #007bff; /* Цвет кнопки */
+  color: white; /* Цвет текста кнопки */
+  border: none; /* Убираем границу */
+  border-radius: 5px; /* Скругляем углы кнопки */
+  cursor: pointer; /* Курсор при наведении */
+  transition: background-color 0.3s; /* Плавный переход при наведении */
+}
+
+.button-container button:hover {
+  background-color: #0056b3; /* Изменение цвета при наведении */
+}
+
