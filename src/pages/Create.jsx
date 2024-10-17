@@ -253,7 +253,7 @@ function handleClick(e) {
       <input className="input input_w1350"  onChange={e=>prim.onChange(e)} onBlur={e=>prim.onBlur(e)} value={prim.value} name="prim" maxLength="80"/>
     </label>
   </div>
-  <div>
+  <div className="center-div" >
     <button className="btn btn-1 btn-sep" onClick={handleClick}>Отправить</button>
   </div>
 </body>

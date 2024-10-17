@@ -1,9 +1,12 @@
-body{
-  align-items: center;
+body {
+  flex-direction: column; /* Устанавливаем направление, если нужно (по умолчанию горизонтально) */
+  align-items: center; /* Центрируем по вертикали */
+  justify-content: center; /* Центрируем по горизонтали, если не указано иное */
   background-color: antiquewhite;
-  font-family: var(--bs-body-font-family);
-  font-family: Verdana,'Roboto', sans-serif;
+  font-family: Verdana, 'Roboto', sans-serif; /* Убираем избыточность */
   font-size: 16.5px;
+  height: 10%; /* Устанавливаем высоту, чтобы justify-content работал */
+  margin: 100; /* Убираем отступы по умолчанию */
 }
 .Total{
   align-items: left;
@@ -11,9 +14,14 @@ body{
 }
 div{
     display: flex;
-    justify-content: center;
     align-items: center;
     padding-left: 20px;
+}
+.div_main{
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
 }
 .btn {
   border: none;
@@ -188,7 +196,7 @@ table {
 th, td {
   border: 1px solid #000000; /* Добавляем границу для ячеек */
   padding: 8px; /* Отступы внутри ячеек */
-  text-align: left; /* Выравнивание текста в ячейках */
+  text-align: center; /* Выравнивание текста в ячейках */
 }
 
 th {
@@ -220,7 +228,7 @@ th {
 }
 
 .card-header {
-  display: flex; /* Используем флекс для расположения заголовков */
+  display: left; /* Используем флекс для расположения заголовков */
   justify-content: space-between; /* Располагаем заголовки с равными промежутками */
   padding: 10px; /* Внутренние отступы для заголовков */
   border-radius: 8px; /* Скругляем углы заголовков */
@@ -228,14 +236,14 @@ th {
 }
 
 .card-row {
-  display: flex; /* Используем флекс для размещения значений в строке */
+  display: left; /* Используем флекс для размещения значений в строке */
   border-bottom: 1px solid #ddd; /* Добавляем разделительную линию между записями */
   padding: 10px 0; /* Отступы для каждой строки */
 }
 
 .card-item {
   flex: 1; /* Равномерное распределение ширины каждого элемента */
-  text-align: center; /* Центрируем содержимое */
+  text-align: left; /* Центрируем содержимое */
 }
 
 .card-item label {
@@ -248,8 +256,7 @@ th {
 }
 
 .button-container {
-  display: flex; /* Используем flexbox для выравнивания кнопки */
-  justify-content: flex-start; /* Выравниваем кнопку влево */
+  display: center; /* Используем flexbox для выравнивания кнопки */
   padding: 10px 0; /* Отступы вокруг кнопки для визуального комфорта */
   width: 100%; /* Устанавливаем ширину контейнера кнопки в 100% */
   box-sizing: border-box; /* Учитываем отступы в ширине */
@@ -270,3 +277,14 @@ th {
   background-color: #0056b3; /* Изменение цвета при наведении */
 }
 
+.card-item.full-width {
+  flex-basis: 100%; /* Элемент занимает всю ширину */
+  text-align: left; /* Левое выравнивание текста для удобства чтения */
+}
+
+.center-div {
+  display: flex;
+  justify-content: center; /* Центрирует по горизонтали */
+  align-items: center; /* Центрирует по вертикали */
+  height: 10%; /* Высота 100% окна, чтобы центрировать по вертикали */
+}
