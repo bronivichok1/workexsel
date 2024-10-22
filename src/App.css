@@ -157,6 +157,9 @@ select {
 .input_w1350{
   width: 1370px;
 }
+.input_w1350-error{
+  width: 1370px;
+}
 .select_w450{
   width: 450px;
 }
@@ -166,7 +169,8 @@ label{
 .select_w450:focus,
 .input_w600:focus,
 .input_w680:focus,
-.select_w1350:focus{
+.select_w1350:focus,
+.input_w1350:focus{
   border-color: #66afe9;
   outline: 0;
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);

@@ -1,6 +1,7 @@
 import "../App.css"
 import {useEffect, useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const useValidation=(value,validations)=>{
   const[isEmpty,setEmpty]=useState(true)
@@ -58,7 +59,7 @@ const useInput=(InitialValue,validations)=>{
 }
 
 function Create() {
-
+  const navigate = useNavigate();
   const PATH = process.env.REACT_APP_PATH;
   const [ButtonClick,setButtonClick]=useState(false)
 
@@ -67,13 +68,13 @@ function Create() {
   const surname=useInput('',{isEmpty:true})
   const name=useInput('',{isEmpty:true})
   const othername=useInput('',{isEmpty:true})
-  const kafedra=useInput('')
+  const kafedra=useInput('',{isEmpty:true})
   const workplace=useInput('',{isEmpty:true})
-  const orgcategory=useInput('')
-  const worktitlecategory=useInput('')
+  const orgcategory=useInput('ИПКиПКЗ')
+  const worktitlecategory=useInput('врач')
   const studyrang=useInput('',{isEmpty:true})
-  const studystep=useInput('',{isEmpty:true})
-  const kvalcategory=useInput('',{isEmpty:true})
+  const studystep=useInput('исслед')
+  const kvalcategory=useInput('б/к')
   const oldstatus=useInput('',{isEmpty:true})
   const olddata=useInput('',{isEmpty:true})
   const datanotification=useInput('',{isEmpty:true})
@@ -118,6 +119,7 @@ function Create() {
         throw new Error('Ошибка: ' + response.statusText);
       }
       const responseData = await response.json();
+      navigate('Main', { replace: false })
       //console.log('Данные успешно отправлены:', responseData);
     } catch (error) {
       //console.error('Ошибка при отправке данных:', error);
@@ -153,10 +155,9 @@ function handleClick(e) {
   </div>
   <div>
     <label className="form-label">Кафедра<span>*</span>
-      <select className="select select_w1350" onChange={e=>kafedra.onChange(e)} onBlur={e=>kafedra.onBlur(e)} value={kafedra.value}  name="kafedra">
-      <option value='тест'>тест</option>
-      </select>
-    </label> 
+      <input  className={kafedra.isDirty&&kafedra.isEmpty?"input_error input_w1350-error":"input input_w1350"} onChange={e=>kafedra.onChange(e)} onBlur={e=>kafedra.onBlur(e)} value={kafedra.value}   name="kafedra" maxLength="80" />
+        {(kafedra.isDirty&&kafedra.isEmpty)&&<div  style={{color:'red'}}></div>}
+      </label> 
   </div>
   <div>
   <label className="form-label">Основное место работы<span>*</span>

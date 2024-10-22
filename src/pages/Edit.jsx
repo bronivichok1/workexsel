@@ -1,12 +1,16 @@
 import "../App.css";
 import React, { useEffect, useState } from 'react';
 import {DataEdit} from '../DataEdit.jsx'
+import { useNavigate } from 'react-router-dom';
+
 function Edit() {
+    const navigate = useNavigate();
     const [data, setData] = useState([]); 
     const [filter, setFilter] = useState(''); 
     const PATH = process.env.REACT_APP_PATH;
     const [i, setI] = useState(0); 
     const [number, setNumber]=useState(DataEdit.number)
+    
     const fetchData = async () => {
         try {
             const response = await fetch(PATH+'/alldata'); 
@@ -33,8 +37,9 @@ function Edit() {
         setFilter(event.target.value); 
     };
 
-    const handleEdit = (event) => {
-         setNumber(event.target.value)
+    const handleEdit = (value) => {
+         setNumber(value)
+         navigate('TotalEdit', { replace: false })
     };
 
     const filteredData = data.filter(item => 
@@ -85,9 +90,8 @@ function Edit() {
                 </div>
             </div>
         </div>
-        
     ))}
-</div>
+    </div>
 
   </body>
     );    
