@@ -119,7 +119,7 @@ function Create() {
         throw new Error('Ошибка: ' + response.statusText);
       }
       const responseData = await response.json();
-      navigate('Main', { replace: false })
+      navigate('/', { replace: true })
       //console.log('Данные успешно отправлены:', responseData);
     } catch (error) {
       //console.error('Ошибка при отправке данных:', error);

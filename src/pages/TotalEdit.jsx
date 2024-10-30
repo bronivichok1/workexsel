@@ -2,6 +2,7 @@ import "../App.css"
 import {useEffect, useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import {DataEdit,Red} from '../DataEdit.jsx'
+import { useNavigate } from "react-router-dom";
 
 const useValidation=(value,validations)=>{
   const[isEmpty,setEmpty]=useState(true)
@@ -62,6 +63,7 @@ function Create() {
     const PATH = process.env.REACT_APP_PATH;
     const [ButtonClick,setButtonClick]=useState(false)
     const [i, setI] = useState(0); 
+    const navigate = useNavigate();
 
 
     const surname=useInput(Red.surname,{isEmpty:true})
@@ -83,37 +85,57 @@ function Create() {
     const DOV=useInput(Red.DOV,{isEmpty:true})
     const prim=useInput(Red.prim)
 
-    const fetchData = async () => {
-        try {
-            const response = await fetch(PATH + '/alldata', {
-                method: 'POST', // Используем метод POST
-                headers: {
-                    'Content-Type': 'application/json' // Указываем, что отправляем JSON
-                },
-                body: JSON.stringify({ number: DataEdit.number }) // Отправляем переменную в формате JSON
-            });
-    
-            if (!response.ok) {
-                throw new Error('Сеть не отвечает');
-            }
-    
-            const result = await response.json();
-            console.log('Полученные данные:', result); // Обработайте полученные данные
-    
-        } catch (error) {
-            console.error('Ошибка при получении данных:', error);
-        }
-    };
+    const prepareData = {
+      number: DataEdit.number,
+      surname: surname.value,
+      name: name.value,
+      othername: othername.value,
+      kafedra: kafedra.value,
+      workplace: workplace.value,
+      orgcategory: orgcategory.value,
+      worktitlecategory: worktitlecategory.value,
+      studyrang: studyrang.value,
+      studystep: studystep.value,
+      kvalcategory: kvalcategory.value,
+      oldstatus: oldstatus.value,
+      olddata: olddata.value,
+      datanotification: datanotification.value,
+      numberdoc: numberdoc.value,
+      numberdocdop: numberdocdop.value,
+      VO: VO.value,
+      DOV: DOV.value,
+      prim:prim.value
+  };
+
+  const sendDataToServer = async () => {
+    try {
+      const response = await fetch(PATH+'/excel/red', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(prepareData), // Преобразование объекта в JSON
+      });
+      if (!response.ok) {
+        throw new Error('Ошибка: ' + response.statusText);
+      }
+      const responseData = await response.json();
+      navigate('/', { replace: true })
+      //console.log('Данные успешно отправлены:', responseData);
+    } catch (error) {
+      //console.error('Ошибка при отправке данных:', error);
+    }
+  };
     
 
     useEffect(() => {
         document.body.style.display = 'revert';
 
-        if (i < 1) {
-            fetchData();
-            setI(1);
+        if (ButtonClick===true) {
+            sendDataToServer()
+            setButtonClick(false)
         }
-    }, []);
+    }, [Red,ButtonClick]);
 
     function handleClick(e) {
         setButtonClick(true)
