@@ -20,4 +20,10 @@ export const Red={
      VO:'',
      DOV:'',
      prim:'',
+     VoFact:'',
+     DOVFact:'',
     }
+export let ClockVO=[]
+export let ClockDOV=[]
+export let ClockData=[]
+export let ClockNumber=[]

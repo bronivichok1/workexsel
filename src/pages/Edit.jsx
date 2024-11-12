@@ -4,11 +4,14 @@ import {DataEdit,Red} from '../DataEdit.jsx'
 import { useNavigate } from 'react-router-dom';
 
 function Edit() {
+    
     const navigate = useNavigate();
     const [data, setData] = useState([]); 
     const [filter, setFilter] = useState(''); 
     const PATH = process.env.REACT_APP_PATH;
     const [i, setI] = useState(0); 
+    
+    let mode = false;
 
     const fetchData = async () => {
         try {
@@ -28,21 +31,19 @@ function Edit() {
             const response = await fetch(PATH + '/total', {
                 method: 'POST', 
                 headers: {
-                    'Content-Type': 'application/json' // Указываем, что передаем JSON
+                    'Content-Type': 'application/json' 
                 },
-                body: JSON.stringify({ number }) // Передаем число из объекта DataEdit
+                body: JSON.stringify({ number }) 
             });
     
-            // Проверяем, успешен ли ответ
             if (!response.ok) {
                 throw new Error('Ошибка сети: ' + response.status);
             }
     
-            const result = await response.json(); // Получаем JSON-ответ
+            const result = await response.json(); 
             
-                const firstItem = result; // Получаем первый элемент из результата
-                
-                // Обновляем объект Red
+                const firstItem = result; 
+
                 Red.surname = firstItem[0];
                 Red.name = firstItem[1];
                 Red.othername = firstItem[2];
@@ -60,10 +61,16 @@ function Edit() {
                 Red.numberdocdop = firstItem[19]; 
                 Red.VO = firstItem[4];
                 Red.DOV = firstItem[5];
-                Red.prim = firstItem[18] ;
-                navigate('TotalEdit', { replace: false })
-                // Добавьте другие поля по мере необходимости
-            
+                Red.prim = firstItem[18];
+                Red.VoFact = firstItem[20];
+                Red.DOVFact = firstItem[21];
+
+                if(mode===true){
+                    navigate('TotalEdit', { replace: false })
+                }
+                    else{
+                    navigate('Clock', { replace: false })
+                }            
     
         } catch (error) {
             console.error('Ошибка при получении данных:', error);
@@ -77,7 +84,7 @@ function Edit() {
             fetchData();
             setI(1);
         }
-    }, []);
+    }, [mode]);
 
     const handleFilterChange = (event) => {
         setFilter(event.target.value); 
@@ -85,6 +92,13 @@ function Edit() {
 
     const handleEdit = (value) => {
         DataEdit.number=value
+        mode=true
+        fetchData2(value)
+    };
+
+    const handleEditClock = (value) => {
+        DataEdit.number=value
+        mode=false
         fetchData2(value)
     };
 
@@ -116,7 +130,7 @@ function Edit() {
                 </div>
                 <p>-</p>
                 <div className="button-container ">
-                    <button onClick={() => handleEdit(item[0])}>Часы</button>
+                    <button onClick={() => handleEditClock(item[0])}>Часы</button>
                 </div>
                 <div className="card-row">
                     <div className="card-item">
