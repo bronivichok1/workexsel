@@ -293,3 +293,21 @@ th {
   align-items: center; /* Центрирует по вертикали */
   height: 10%; /* Высота 100% окна, чтобы центрировать по вертикали */
 }
+
+.container {
+  display: flex;
+  justify-content: center; /* Центрирование по горизонтали */
+  align-items: center; /* Центрирование по вертикали */
+  height: 100vh; /* Занять всю высоту экрана */
+}
+
+.form {
+  display: flex;
+  flex-direction: column; /* Расположение элементов по вертикали */
+  gap: 15px; /* Пробел между элементами формы */
+}
+
+.form-label {
+  margin-bottom: 5px; 
+  text-align: center;
+}

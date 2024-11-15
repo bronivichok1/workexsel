@@ -125,23 +125,24 @@ const useValidation=(value,validations)=>{
         <body>
             <label>Планируемое</label>
             <div>
-                <label className="form-label">ВО
-                    <input className="input input_w680" onChange={e => VO.onChange(e)} onBlur={e => VO.onBlur(e)} value={VO.value} name="VO" maxLength="40" />
-                    
-                </label>
-                <label className="form-label">ДОВ
-                    <input className="input input_w680" onChange={e => DOV.onChange(e)} onBlur={e => DOV.onBlur(e)} value={DOV.value} name="DOV" maxLength="40" />
+                <label className="form-label">ВО:{VO.value}
                 </label>
             </div>
+            <div>
+                <label className="form-label">ДОВ:{DOV.value}
+                </label>
+            </div>
+            <hr/>
             <label>Фактически(по актам)</label>
             <div>
-                <label className="form-label">ВО
-                    <input className="input input_w680" onChange={e => VOconst.onChange(e)} onBlur={e => VOconst.onBlur(e)} value={VOconst.value} name="VOconst" maxLength="40" />
-                </label>
-                <label className="form-label">ДОВ
-                    <input className="input input_w680" onChange={e => DOVconst.onChange(e)} onBlur={e => DOVconst.onBlur(e)} value={DOVconst.value} name="DOVconst" maxLength="40" />
+                <label className="form-label">ВО:{VOconst.value}
                 </label>
             </div>
+            <div>
+                <label className="form-label">ДОВ:{DOVconst.value}
+                </label>
+            </div>
+            <hr/>
             <label>Дополнительные сведения</label>
             {fields.map((field, index) => (
                 <div key={index} style={{ display: 'flex', alignItems: 'center' }}>
