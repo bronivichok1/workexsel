@@ -23,6 +23,10 @@ export const Red={
      VoFact:'',
      DOVFact:'',
     }
+export const Status={
+    status:'',
+    rang:'',
+}
 export let ClockVO=[]
 export let ClockDOV=[]
 export let ClockData=[]

@@ -1,5 +1,7 @@
 import "../App.css";
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Status } from "../DataEdit";
 
 const useValidation = (value, validations) => {
     const [isEmpty, setEmpty] = useState(true);
@@ -52,8 +54,10 @@ const useInput = (InitialValue, validations) => {
 }
 
 function Auth() {
-    const PATH = process.env.REACT_APP_PATH; // Убедитесь, что переменная окружения прописана
-    const [responseMessage, setResponseMessage] = useState(''); // Для хранения сообщения от сервера
+    const navigate = useNavigate();
+
+    const PATH = process.env.REACT_APP_PATH; 
+    const [responseMessage, setResponseMessage] = useState(''); 
 
     const login = useInput('', { isEmpty: true });
     const password = useInput('', { isEmpty: true });
@@ -75,30 +79,35 @@ function Auth() {
                     body: JSON.stringify(prepareData),
                 });
     
-                const data = await response.json(); // Получаем ответ от сервера
+                const data = await response.json(); 
                 if (response.ok) {
-                    // Предполагаем, что ответ сервера выглядит так: { status: "red" }
-                    const serverStatus = data.status; // Здесь меняем на data.status
-                    console.log(`Ответ от сервера: ${serverStatus}`);
-    
+
+                    const serverStatus = data.status; 
+                    
+                    if(serverStatus=='red'){
+                        Status.status='red'
+                        navigate('Main', { replace: false })
+                    }else if(serverStatus=='watch'){
+                        Status.status='watch'
+                        navigate('Main2', { replace: false })
+                    }else{
+                        Status.status='none'
+                    }
                 } else {
-                    // Если ответ не успешный, выводим сообщение об ошибке
                     setResponseMessage(data.message || 'Ошибка при входе');
                 }
             } catch (error) {
-                // Обработка сетевой ошибки
                 setResponseMessage('Ошибка сети');
                 console.error('Ошибка:', error);
             }
         } else {
-            // Если поля не заполнены
             setResponseMessage('Заполните все обязательные поля');
         }
     };    
 
     return (
-        <div className="container"> {/* Центрируем все содержимое */}
-            <form className="form"> {/* Форма, содержащая все элементы */}
+        <div className="container"> 
+            <form className="form"> 
                 <label className="form-label">Логин<span>*</span></label>
                 <div>
                     <input
@@ -120,7 +129,7 @@ function Auth() {
                         value={password.value}
                         name="password"
                         maxLength="40"
-                        type="password" // Хорошая практика использовать тип password для поля пароля
+                        type="password" 
                     />
                 </div>
                 
@@ -128,7 +137,7 @@ function Auth() {
                     <button className="btn btn-1 btn-sep" onClick={handleClick}>Вход</button>
                 </div>
                 
-                {responseMessage && ( // Отображаем сообщение от сервера
+                {responseMessage && ( 
                     <div className="response-message">
                         {responseMessage}
                     </div>

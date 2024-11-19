@@ -1,7 +1,7 @@
 import "../App.css"
 import {useEffect, useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
-import {DataEdit,Red} from '../DataEdit.jsx'
+import {DataEdit,Red,Status} from '../DataEdit.jsx'
 import { useNavigate } from "react-router-dom";
 
 const useValidation=(value,validations)=>{
@@ -114,16 +114,14 @@ function Create() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(prepareData), // Преобразование объекта в JSON
+        body: JSON.stringify(prepareData), 
       });
       if (!response.ok) {
         throw new Error('Ошибка: ' + response.statusText);
       }
       const responseData = await response.json();
       navigate('/', { replace: true })
-      //console.log('Данные успешно отправлены:', responseData);
     } catch (error) {
-      //console.error('Ошибка при отправке данных:', error);
     }
   };
     
@@ -134,6 +132,11 @@ function Create() {
         if (ButtonClick===true) {
             sendDataToServer()
             setButtonClick(false)
+        }
+        if(Status.status!='red'){
+          if(Status.status!='watch'){
+            navigate('/', { replace: false })
+          }
         }
     }, [Red,ButtonClick]);
 

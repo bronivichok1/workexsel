@@ -2,6 +2,7 @@ import "../App.css"
 import {useEffect, useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { Status } from "../DataEdit";
 
 const useValidation=(value,validations)=>{
   const[isEmpty,setEmpty]=useState(true)
@@ -120,16 +121,20 @@ function Create() {
       }
       const responseData = await response.json();
       navigate('/', { replace: true })
-      //console.log('Данные успешно отправлены:', responseData);
     } catch (error) {
-      //console.error('Ошибка при отправке данных:', error);
     }
   };
 
   useEffect(()=>{
-    if(ButtonClick===true){
+  
+    if(ButtonClick===true&&Status.status=='red'){
       sendDataToServer()
       setButtonClick(false)
+    }
+    if(Status.status!='red'){
+      if(Status.status!='watch'){
+        navigate('/', { replace: false })
+      }
     }
   },[ButtonClick])
 

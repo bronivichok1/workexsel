@@ -1,7 +1,7 @@
 import "../App.css"
 import {useEffect, useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
-import {DataEdit,Red} from '../DataEdit.jsx'
+import {DataEdit,Red,Status} from '../DataEdit.jsx'
 import { useNavigate } from "react-router-dom";
 
 const useValidation=(value,validations)=>{
@@ -71,7 +71,6 @@ const useValidation=(value,validations)=>{
 
     const [fields, setFields] = useState(Array.from({ length: 25 }, () => ({ date: '', month: '', hoursVO: '', hoursDOV: '' })));
 
-    // Обработчик изменений для полей дополнительных сведений
     const handleFieldChange = (index, e) => {
         const { name, value } = e.target;
         const newFields = [...fields];
@@ -84,6 +83,11 @@ const useValidation=(value,validations)=>{
             sendDataToServer();
             setButtonClick(false);
         }
+        if(Status.status!='red'){
+            if(Status.status!='watch'){
+              navigate('/', { replace: false })
+            }
+          }
     }, [ButtonClick]);
 
     const handleClick = (e) => {
@@ -93,7 +97,7 @@ const useValidation=(value,validations)=>{
 
     const sendDataToServer = async () => {
         const formData = {
-            number: DataEdit.number, // Убедитесь, что DataEdit.number доступен и не равен undefined
+            number: DataEdit.number, 
             VO: VO.value,
             DOV: DOV.value,
             VOconst: VOconst.value,

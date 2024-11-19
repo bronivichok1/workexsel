@@ -1,15 +1,18 @@
 import "../App.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Status } from "../DataEdit";
+import { useNavigate } from "react-router-dom";
 
 function Total() {
     const [i, setI] = useState(0); 
     const PATH = process.env.REACT_APP_PATH;
     const [values, setValues] = useState([]);
+    const navigate = useNavigate();
 
     const fetchValues = async () => {
         try {
-            const response = await axios.get(PATH + "/total");
+            const response = await axios.get(PATH + "/totaldata");
             setValues(response.data.results);
             console.log(response.data); 
             console.log(values)
@@ -23,6 +26,11 @@ function Total() {
             fetchValues();
             setI(1);
         }
+        if(Status.status!='red'){
+            if(Status.status!='watch'){
+              navigate('/', { replace: false })
+            }
+          }
     }, [i,values]);
 
 

@@ -1,6 +1,6 @@
 import "../App.css";
 import React, { useEffect, useState } from 'react';
-import {DataEdit,Red} from '../DataEdit.jsx'
+import {DataEdit,Red,Status} from '../DataEdit.jsx'
 import { useNavigate } from 'react-router-dom';
 
 function Edit() {
@@ -84,6 +84,11 @@ function Edit() {
             fetchData();
             setI(1);
         }
+        if(Status.status!='red'){
+            if(Status.status!='watch'){
+              navigate('/', { replace: false })
+            }
+          }
     }, [mode]);
 
     const handleFilterChange = (event) => {

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import React, { useEffect } from 'react';
 import { Status } from "../DataEdit";
 
-function Main() {
+function Main2() {
   const navigate = useNavigate();
   const PATH = process.env.REACT_APP_PATH;
 
@@ -26,16 +26,16 @@ function Main() {
         throw new Error('Ошибка при скачивании файла, статус: ' + response.status);
       }
 
-      const blob = await response.blob();
+      const blob = await response.blob(); 
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.style.display = 'none';
-      a.href = url;
-      a.download = 'Zhurnal.xlsx';
-      document.body.appendChild(a);
-      a.click();
-      window.URL.revokeObjectURL(url);
-      a.remove();
+      a.href = url; 
+      a.download = 'Zhurnal.xlsx'; 
+      document.body.appendChild(a); 
+      a.click(); 
+      window.URL.revokeObjectURL(url); 
+      a.remove(); 
     } catch (error) {
       console.error('Ошибка при скачивании файла:', error);
     }
@@ -43,9 +43,6 @@ function Main() {
 
   return ( 
     <body>
-      <div className="div_main"> 
-        <button className="btn btn-1 btn-sep" onClick={() => navigate('Create', { replace: false })}>Создать</button>
-      </div>
       <div className="div_main">
         <button className="btn btn-1 btn-sep" onClick={() => navigate('Edit', { replace: false })}>Найти и редактировать</button>
       </div>
@@ -59,4 +56,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default Main2;
