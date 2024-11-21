@@ -120,7 +120,7 @@ function Create() {
         throw new Error('Ошибка: ' + response.statusText);
       }
       const responseData = await response.json();
-      navigate('/', { replace: true })
+      navigate('/Main', { replace: true })
     } catch (error) {
     }
   };

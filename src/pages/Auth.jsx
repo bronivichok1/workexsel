@@ -93,16 +93,11 @@ function Auth() {
                     }else{
                         Status.status='none'
                     }
-                } else {
-                    setResponseMessage(data.message || 'Ошибка при входе');
-                }
+                } 
             } catch (error) {
-                setResponseMessage('Ошибка сети');
-                console.error('Ошибка:', error);
+                
             }
-        } else {
-            setResponseMessage('Заполните все обязательные поля');
-        }
+        } 
     };    
 
     return (
@@ -136,12 +131,6 @@ function Auth() {
                 <div className="center-div">
                     <button className="btn btn-1 btn-sep" onClick={handleClick}>Вход</button>
                 </div>
-                
-                {responseMessage && ( 
-                    <div className="response-message">
-                        {responseMessage}
-                    </div>
-                )}
             </form>
         </div>
     );

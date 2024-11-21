@@ -14,8 +14,7 @@ function Total() {
         try {
             const response = await axios.get(PATH + "/totaldata");
             setValues(response.data.results);
-            console.log(response.data); 
-            console.log(values)
+            
         } catch (err) {
             console.error("Ошибка при получении данных:", err);
         }

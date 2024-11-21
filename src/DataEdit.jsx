@@ -27,7 +27,4 @@ export const Status={
     status:'',
     rang:'',
 }
-export let ClockVO=[]
-export let ClockDOV=[]
-export let ClockData=[]
-export let ClockNumber=[]
+export let Array_Result=[]

@@ -1,7 +1,7 @@
 import "../App.css"
 import {useEffect, useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
-import {DataEdit,Red,Status} from '../DataEdit.jsx'
+import {DataEdit,Red,Status,Array_Result} from '../DataEdit.jsx'
 import { useNavigate } from "react-router-dom";
 
 const useValidation=(value,validations)=>{
@@ -78,8 +78,12 @@ const useValidation=(value,validations)=>{
         setFields(newFields);
     };
 
+    
+
     useEffect(() => {
-        if (ButtonClick) {
+
+
+        if ((ButtonClick===true)&&Status.status=='red') {
             sendDataToServer();
             setButtonClick(false);
         }
@@ -88,6 +92,14 @@ const useValidation=(value,validations)=>{
               navigate('/', { replace: false })
             }
           }
+          const transformed = Array_Result.map(item => ({
+            date: item[0] || '',        // Используем первый элемент массива
+            month: item[1] || '',       // Используем второй элемент массива
+            hoursVO: item[2] || 0,      // Используем третий элемент массива
+            hoursDOV: item[3] || 0,     // Используем четвертый элемент массива
+        }));
+            setFields(transformed);
+            
     }, [ButtonClick]);
 
     const handleClick = (e) => {

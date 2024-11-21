@@ -1,6 +1,6 @@
 import "../App.css";
 import React, { useEffect, useState } from 'react';
-import {DataEdit,Red,Status} from '../DataEdit.jsx'
+import {DataEdit,Red,Status,Array_Result} from '../DataEdit.jsx'
 import { useNavigate } from 'react-router-dom';
 
 function Edit() {
@@ -77,6 +77,27 @@ function Edit() {
         }
     };
 
+    const fetchData3 = async (number) => {
+        const params = new URLSearchParams({ rowNumber: number });
+        const response = await fetch(`${PATH}/editclock?${params}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Ошибка сети: ' + response.status);
+        }
+
+        const result = await response.json();
+        if (Array.isArray(result)) {
+            Array_Result.push(...result); // Используем spread operator для добавления элементов
+        } else {
+            console.error('Ожидался массив, получен:', result);
+        }
+    };
+
     useEffect(() => {
         document.body.style.display = 'revert';
 
@@ -105,6 +126,7 @@ function Edit() {
         DataEdit.number=value
         mode=false
         fetchData2(value)
+        fetchData3(value)
     };
 
     const filteredData = data.filter(item => 

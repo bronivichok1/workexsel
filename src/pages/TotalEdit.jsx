@@ -120,7 +120,7 @@ function Create() {
         throw new Error('Ошибка: ' + response.statusText);
       }
       const responseData = await response.json();
-      navigate('/', { replace: true })
+      navigate('/Main', { replace: false })
     } catch (error) {
     }
   };
@@ -129,7 +129,7 @@ function Create() {
     useEffect(() => {
         document.body.style.display = 'revert';
 
-        if (ButtonClick===true) {
+        if ((ButtonClick===true)&&Status.status=='red') {
             sendDataToServer()
             setButtonClick(false)
         }
