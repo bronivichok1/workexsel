@@ -131,7 +131,7 @@ const useValidation=(value,validations)=>{
             }
 
             const data = await response.json();
-            console.log('Успешно отправлено:', data);
+            navigate('/Main', { replace: false })
         } catch (error) {
             console.error('Ошибка при отправке данных:', error);
         }

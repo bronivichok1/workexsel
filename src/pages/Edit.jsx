@@ -92,10 +92,12 @@ function Edit() {
 
         const result = await response.json();
         if (Array.isArray(result)) {
+            Array_Result.length = 0; // Очищаем массив
             Array_Result.push(...result); // Используем spread operator для добавления элементов
         } else {
             console.error('Ожидался массив, получен:', result);
         }
+        
     };
 
     useEffect(() => {
