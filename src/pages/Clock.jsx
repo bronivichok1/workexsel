@@ -160,45 +160,45 @@ const useValidation=(value,validations)=>{
             </div>
             <hr/>
             <label>Дополнительные сведения</label>
-            {fields.map((field, index) => (
-                <div key={index} style={{ display: 'flex', alignItems: 'center' }}>
-                    <label style={{ marginRight: '10px' }}>{index + 1}.</label>
-                    <label className="form-label">Дата
-                        <input 
-                            type="text"
-                            name="date"
-                            value={field.date}
-                            onChange={e => handleFieldChange(index, e)} 
-                        />
-                    </label>
-                    <label className="form-label">Месяц
-                        <input 
-                            type="text"
-                            name="month"
-                            value={field.month}
-                            onChange={e => handleFieldChange(index, e)} 
-                            maxLength="20" 
-                        />
-                    </label>
-                    <label className="form-label">Количество часов ВО
-                        <input 
-                            type="text"
-                            name="hoursVO"
-                            value={field.hoursVO}
-                            onChange={e => handleFieldChange(index, e)} 
-                        />
-                    </label>
-                    <label className="form-label">Количество часов ДОВ
-                        <input 
-                            type="text"
-                            name="hoursDOV"
-                            value={field.hoursDOV}
-                            onChange={e => handleFieldChange(index, e)} 
-                        />
-                    </label>
-                </div>
-            ))}
-            
+{fields.slice(0, 25).map((field, index) => (
+    <div key={index} style={{ display: 'flex', alignItems: 'center' }}>
+        <label style={{ marginRight: '10px' }}>{index + 1}.</label>
+        <label className="form-label">Дата
+            <input 
+                type="text"
+                name="date"
+                value={field.date}
+                onChange={e => handleFieldChange(index, e)} 
+            />
+        </label>
+        <label className="form-label">Месяц
+            <input 
+                type="text"
+                name="month"
+                value={field.month}
+                onChange={e => handleFieldChange(index, e)} 
+                maxLength="20" 
+            />
+        </label>
+        <label className="form-label">Количество часов ВО
+            <input 
+                type="text"
+                name="hoursVO"
+                value={field.hoursVO}
+                onChange={e => handleFieldChange(index, e)} 
+            />
+        </label>
+        <label className="form-label">Количество часов ДОВ
+            <input 
+                type="text"
+                name="hoursDOV"
+                value={field.hoursDOV}
+                onChange={e => handleFieldChange(index, e)} 
+            />
+        </label>
+    </div>
+))}
+
             <div className="center-div">
                 <button className="btn btn-1 btn-sep" onClick={handleClick}>Отправить</button>
             </div>
